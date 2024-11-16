@@ -10,9 +10,15 @@ const Computers = ({ isMobile }) => {
 
   return (
     <mesh>
-      <ambientLight intensity={2} />
-      <directionalLight position={[10, 10, 5]} intensity={2} />
-      <directionalLight position={[-10, 10, -5]} intensity={1} />
+      {/* Reduced ambient light intensity */}
+      <ambientLight intensity={0.8} />
+
+      {/* Reduced main directional light */}
+      <directionalLight position={[10, 10, 5]} intensity={0.7} />
+
+      {/* Reduced secondary directional light */}
+      <directionalLight position={[-10, 10, -5]} intensity={0.4} />
+
       <primitive
         object={computer.scene}
         scale={isMobile ? 0.7 : 0.75}
