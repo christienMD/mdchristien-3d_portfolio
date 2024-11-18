@@ -15,6 +15,7 @@ const ServiceCard = ({ index, title, icon }) => (
       className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card"
     >
       <div
+        // eslint-disable-next-line react/no-unknown-property
         options={{
           max: 45,
           scale: 1,
