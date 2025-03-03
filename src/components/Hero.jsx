@@ -19,9 +19,10 @@ const Hero = () => {
           <h1 className={`${styles.heroHeadText} text-white`}>
             Hi, I&apos;m <span className="text-[#915EFF]">Christien</span>
           </h1>
-          <p className={`${styles.heroSubText} mt-2 text-white-100`}>
-            I develop 3D visuals, user <br className="sm:block hidden" />
-            interfaces and web applications
+          <p className={`${styles.heroHeadline} mt-2 text-white-100`}>
+            I build modern web and mobile apps with React, Next js{" "}
+            <br className="sm:block hidden" />
+            React Native and TypeScript
           </p>
         </div>
       </div>
