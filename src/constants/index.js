@@ -8,13 +8,8 @@ import {
   html,
   css,
   reactjs,
-  redux,
   tailwind,
-  nodejs,
-  mongodb,
   git,
-  figma,
-  docker,
   meta,
   starbucks,
   tesla,
@@ -22,7 +17,12 @@ import {
   carrent,
   jobit,
   tripguide,
-  threejs,
+  zustand,
+  laravel,
+  prisma,
+  nextJs,
+  mySQL,
+  reactNative
 } from "../assets";
 
 export const navLinks = [
@@ -81,36 +81,36 @@ const technologies = [
     icon: reactjs,
   },
   {
-    name: "Redux Toolkit",
-    icon: redux,
+    name: "React Native",
+    icon: reactNative,
+  },
+  {
+    name: "Next JS",
+    icon: nextJs,
   },
   {
     name: "Tailwind CSS",
     icon: tailwind,
   },
   {
-    name: "Node JS",
-    icon: nodejs,
+    name: "Laravel",
+    icon: laravel,
   },
   {
-    name: "MongoDB",
-    icon: mongodb,
+    name: "MySQL",
+    icon: mySQL,
   },
   {
-    name: "Three JS",
-    icon: threejs,
+    name: "Zustand",
+    icon: zustand,
   },
   {
-    name: "git",
+    name: "Git",
     icon: git,
   },
   {
-    name: "figma",
-    icon: figma,
-  },
-  {
-    name: "docker",
-    icon: docker,
+    name: "Prisma",
+    icon: prisma,
   },
 ];
 
@@ -126,7 +126,7 @@ const experiences = [
       "Improved platform security by 30% by implementing core authentication features using React.js and TypeScript.",
       "Built responsive interfaces with modern UI components while efficiently consuming Laravel backend APIs.",
       "Contributed to a multi-tenant Laravel platform for dynamic content management across different tenant websites.",
-      "Co-trained React/React Native bootcamp participants and mentored junior developers to complete real-life projects."
+      "Co-trained React/React Native bootcamp participants and mentored junior developers to complete real-life projects.",
     ],
   },
   {
@@ -140,7 +140,7 @@ const experiences = [
       "Implemented comprehensive user management features for tracking and managing scouts, players, and platform activities.",
       "Successfully integrated Firebase backend services while learning the technology on the job.",
       "Developed responsive interfaces ensuring consistent experience across devices.",
-      "Mentored interns by providing quality support, learning materials, and organizing sessions to help them gain hands-on experience."
+      "Mentored interns by providing quality support, learning materials, and organizing sessions to help them gain hands-on experience.",
     ],
   },
   {
@@ -153,7 +153,7 @@ const experiences = [
       "Led a comprehensive mentorship program for frontend development interns, providing video tutorials and personalized support.",
       "Conducted regular online evaluation sessions to assess interns' progress and understanding of frontend concepts.",
       "Utilized interactive online sessions to foster engagement and facilitate collaborative learning experiences.",
-      "Promoted knowledge sharing, peer-to-peer support, and teamwork through group projects and pair programming sessions."
+      "Promoted knowledge sharing, peer-to-peer support, and teamwork through group projects and pair programming sessions.",
     ],
   },
   {
@@ -166,7 +166,7 @@ const experiences = [
       "Worked on the LEAD Frontend project, a real-life food delivery application, developing according to the Software Requirements Specification.",
       "Built responsive and intuitive user interfaces using React and Next.js for user registration, restaurant search, and order management.",
       "Developed user-friendly web forms with validation and error handling.",
-      "Created modular, reusable components and abstracted specific styles to enhance code maintainability and scalability."
+      "Created modular, reusable components and abstracted specific styles to enhance code maintainability and scalability.",
     ],
   },
 ];
