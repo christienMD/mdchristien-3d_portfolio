@@ -14,15 +14,15 @@ import {
   starbucks,
   tesla,
   shopify,
-  carrent,
-  jobit,
-  tripguide,
+  jiraclone,
+  gamehub,
+  obilli,
   zustand,
   laravel,
   prisma,
   nextJs,
   mySQL,
-  reactNative
+  reactNative,
 } from "../assets";
 
 export const navLinks = [
@@ -200,16 +200,41 @@ const testimonials = [
 
 const projects = [
   {
-    name: "Car Rent",
+    name: "Jira Clone",
     description:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "A lightweight Jira-inspired task management app with real-time synchronization, responsive layouts, and optimized drag-and-drop functionality. Features modern authentication flows, performance-optimized rendering, and accessibility standards implementation.",
+    tags: [
+      {
+        name: "nextjs",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "typescript",
+        color: "green-text-gradient",
+      },
+      {
+        name: "tailwind",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "appwrite",
+        color: "orange-text-gradient",
+      },
+    ],
+    image: jiraclone,
+    source_code_link: "https://github.com/christienMD/jira-clone.git",
+  },
+  {
+    name: "Game-Hub",
+    description:
+      "A video game discovery web application allowing users to search, filter, and explore games by various criteria. A mini version of the Rawg website with beautiful UI and responsive design for optimal viewing on any device.",
     tags: [
       {
         name: "react",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "typescript",
         color: "green-text-gradient",
       },
       {
@@ -217,50 +242,33 @@ const projects = [
         color: "pink-text-gradient",
       },
     ],
-    image: carrent,
-    source_code_link: "https://github.com/",
+    image: gamehub,
+    source_code_link: "https://mdchristien-gamehub.vercel.app/",
   },
   {
-    name: "Job IT",
+    name: "Obilli",
     description:
-      "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "restapi",
-        color: "green-text-gradient",
-      },
-      {
-        name: "scss",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: jobit,
-    source_code_link: "https://github.com/",
-  },
-  {
-    name: "Trip Guide",
-    description:
-      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
+      "A comprehensive Fiverr-style marketplace platform that connects freelancers with clients. The platform offers intuitive navigation and responsive design for seamless user experience across all devices.",
     tags: [
       {
         name: "nextjs",
         color: "blue-text-gradient",
       },
       {
-        name: "supabase",
+        name: "typescript",
         color: "green-text-gradient",
       },
       {
-        name: "css",
+        name: "supabase",
         color: "pink-text-gradient",
       },
+      {
+        name: "cloudinary",
+        color: "orange-text-gradient",
+      },
     ],
-    image: tripguide,
-    source_code_link: "https://github.com/",
+    image: obilli,
+    source_code_link: "https://github.com/christienMD/production-bonas-app",
   },
 ];
 
