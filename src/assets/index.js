@@ -32,6 +32,7 @@ import tesla from "./company/tesla.png";
 import obilli from "./obilli.PNG";
 import gamehub from "./gamehub.PNG";
 import jiraclone from "./jiraclone.PNG";
+import cyril from './cyril.jpeg'
 
 export {
   laravel,
@@ -65,4 +66,5 @@ export {
   gamehub,
   jiraclone,
   obilli,
+  cyril
 };

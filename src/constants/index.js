@@ -1,28 +1,24 @@
 import {
-  mobile,
-  backend,
   creator,
-  web,
-  javascript,
-  typescript,
-  html,
   css,
-  reactjs,
-  tailwind,
-  git,
-  meta,
-  starbucks,
-  tesla,
-  shopify,
-  jiraclone,
   gamehub,
-  obilli,
-  zustand,
+  git,
+  html,
+  javascript,
+  jiraclone,
   laravel,
-  prisma,
-  nextJs,
+  mobile,
   mySQL,
+  nextJs,
+  obilli,
+  prisma,
+  reactjs,
   reactNative,
+  tailwind,
+  typescript,
+  web,
+  zustand,
+  cyril
 } from "../assets";
 
 export const navLinks = [
@@ -176,8 +172,9 @@ const testimonials = [
     testimonial:
       "I thought it was impossible to make a website as beautiful as our product, but Md Christien proved me wrong.",
     name: "Nkwi Cyril",
-    designation: "CFO",
-    company: "Yadiko",
+    designation: "CEO",
+    company: "Cyrix",
+    image: cyril
     // image: "https://randomuser.me/api/portraits/women/4.jpg",
   },
   {
@@ -272,4 +269,5 @@ const projects = [
   },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+export { experiences, projects, services, technologies, testimonials };
+
