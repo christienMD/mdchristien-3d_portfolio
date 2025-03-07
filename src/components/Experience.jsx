@@ -10,6 +10,7 @@ import { styles } from "../styles";
 import { experiences } from "../constants";
 import { SectionWrapper } from "../hoc";
 import { textVariant } from "../utils/motion";
+import CompanyIcon from "./CompanyIcon";
 
 const ExperienceCard = ({ experience }) => {
   return (
@@ -23,11 +24,20 @@ const ExperienceCard = ({ experience }) => {
       iconStyle={{ background: experience.iconBg }}
       icon={
         <div className="flex justify-center items-center w-full h-full">
-          <img
-            src={experience.icon}
-            alt={experience.company_name}
-            className="w-[60%] h-[60%] object-contain"
-          />
+            {experience.icon ? (
+                <img
+                  src={experience.icon}
+                  alt="project_image"
+                  className="w-full h-full object-cover rounded-2xl"
+                />
+              ) : (
+                <CompanyIcon
+                  name={experience.company_name}
+                  size={250}
+                  backgroundColor="#1d1836"
+                  textColor="#fff"
+                />
+              )}
         </div>
       }
     >

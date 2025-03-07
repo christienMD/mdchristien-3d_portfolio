@@ -118,7 +118,7 @@ const experiences = [
   {
     title: "Software Developer",
     company_name: "Tech Chantier",
-    icon: starbucks,
+    icon: "",
     iconBg: "#383E56",
     date: "March 2024 - Present",
     points: [
@@ -132,7 +132,7 @@ const experiences = [
   {
     title: "Frontend Developer",
     company_name: "Touko Banix",
-    icon: starbucks,
+    icon: "",
     iconBg: "#E6DEDD",
     date: "Feb 2024 - May 2024",
     points: [
@@ -146,7 +146,7 @@ const experiences = [
   {
     title: "Frontend Developer Mentor",
     company_name: "Wicon",
-    icon: starbucks,
+    icon: "",
     iconBg: "#383E56",
     date: "Jan 2024 - April 2024",
     points: [
@@ -159,7 +159,7 @@ const experiences = [
   {
     title: "Frontend Developer Intern",
     company_name: "Loop Technologies",
-    icon: starbucks,
+    icon: "",
     iconBg: "#E6DEDD",
     date: "June 2023 - Jan 2024",
     points: [
