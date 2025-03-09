@@ -33,6 +33,7 @@ import obilli from "./obilli.PNG";
 import gamehub from "./gamehub.PNG";
 import jiraclone from "./jiraclone.PNG";
 import cyril from './cyril.jpeg'
+import desline from './desline.jpg'
 
 export {
   laravel,
@@ -66,5 +67,6 @@ export {
   gamehub,
   jiraclone,
   obilli,
-  cyril
+  cyril,
+  desline
 };

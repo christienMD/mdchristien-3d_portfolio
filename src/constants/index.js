@@ -18,7 +18,8 @@ import {
   typescript,
   web,
   zustand,
-  cyril
+  cyril,
+  desline
 } from "../assets";
 
 export const navLinks = [
@@ -190,8 +191,9 @@ const testimonials = [
       "After Md Christien optimized our website, our traffic increased by 50%. We can't thank them enough!",
     name: "Desline",
     designation: "President",
-    company: "Terminal Trend Technologies",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
+    company: "T T Technologies",
+    image: desline
+    // image: "https://randomuser.me/api/portraits/women/6.jpg",
   },
 ];
 
