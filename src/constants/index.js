@@ -189,7 +189,7 @@ const testimonials = [
   {
     testimonial:
       "After Md Christien optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "Desline",
+    name: "Egnr. Desline Vevanje",
     designation: "President",
     company: "T T Technologies",
     image: desline
