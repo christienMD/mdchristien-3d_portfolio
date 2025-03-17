@@ -20,7 +20,7 @@ import {
   zustand,
   cyril,
   desline,
-  lmsCourse
+  lmsCourse,
 } from "../assets";
 
 export const navLinks = [
@@ -176,7 +176,7 @@ const testimonials = [
     name: "Nkwi Cyril",
     designation: "CEO",
     company: "Cyrix",
-    image: cyril
+    image: cyril,
     // image: "https://randomuser.me/api/portraits/women/4.jpg",
   },
   {
@@ -193,7 +193,7 @@ const testimonials = [
     name: "Egnr. Desline Vevanje",
     designation: "President",
     company: "T T Technologies",
-    image: desline
+    image: desline,
     // image: "https://randomuser.me/api/portraits/women/6.jpg",
   },
 ];
@@ -223,6 +223,7 @@ const projects = [
     ],
     image: jiraclone,
     source_code_link: "https://github.com/christienMD/jira-clone.git",
+    live_demo_link: "https://mdchristien-jira-clone.vercel.app",
   },
   {
     name: "Game-Hub",
@@ -244,6 +245,7 @@ const projects = [
     ],
     image: gamehub,
     source_code_link: "https://github.com/christienMD/game-hub",
+    live_demo_link: "https://mdchristien-gamehub.vercel.app",
   },
   {
     name: "Obilli",
@@ -269,10 +271,11 @@ const projects = [
     ],
     image: obilli,
     source_code_link: "https://github.com/christienMD/production-bonas-app",
+    live_demo_link: "https://www.obilli.com",
   },
   {
     name: "LMS Course platform",
-    description: 
+    description:
       "A comprehensive Learning Management System enabling educators to create, manage, and monetize online courses. Features include interactive content delivery, video streaming with MUX, drag-and-drop chapter organization, secure payment processing, and real-time progress tracking for students.",
     tags: [
       {
@@ -297,9 +300,9 @@ const projects = [
       },
     ],
     image: lmsCourse,
-    source_code_link: "https://github.com/christienMD/lms-course-platform"
-  }
+    source_code_link: "https://github.com/christienMD/lms-course-platform",
+    live_demo_link: "https://lmscourse-platform.vercel.app",
+  },
 ];
 
 export { experiences, projects, services, technologies, testimonials };
-
