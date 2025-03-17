@@ -23,6 +23,7 @@ import nextJs from "./tech/next-js.svg";
 import prisma from "./tech/prisma.svg";
 import zustand from "./tech/zustand.svg";
 import reactNative from "./tech/reactNative.svg";
+import lmsCourse from "./lms-course.PNG"
 
 import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
@@ -36,7 +37,6 @@ import cyril from './cyril.jpeg'
 import desline from './desline.jpg'
 
 export {
-  laravel,
   reactNative,
   mySQL,
   nextJs,
@@ -68,5 +68,7 @@ export {
   jiraclone,
   obilli,
   cyril,
-  desline
+  desline,
+  lmsCourse,
+  laravel,
 };

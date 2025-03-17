@@ -19,7 +19,8 @@ import {
   web,
   zustand,
   cyril,
-  desline
+  desline,
+  lmsCourse
 } from "../assets";
 
 export const navLinks = [
@@ -269,6 +270,35 @@ const projects = [
     image: obilli,
     source_code_link: "https://github.com/christienMD/production-bonas-app",
   },
+  {
+    name: "LMS Course platform",
+    description: 
+      "A comprehensive Learning Management System enabling educators to create, manage, and monetize online courses. Features include interactive content delivery, video streaming with MUX, drag-and-drop chapter organization, secure payment processing, and real-time progress tracking for students.",
+    tags: [
+      {
+        name: "nextjs",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "tailwind",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "prisma",
+        color: "green-text-gradient",
+      },
+      {
+        name: "mysql",
+        color: "orange-text-gradient",
+      },
+      {
+        name: "shadcn",
+        color: "blue-text-gradient",
+      },
+    ],
+    image: lmsCourse,
+    source_code_link: "https://github.com/christienMD/lms-course-platform"
+  }
 ];
 
 export { experiences, projects, services, technologies, testimonials };
