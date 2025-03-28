@@ -22,7 +22,7 @@ const Hero = () => {
           <p className={`${styles.heroHeadline} mt-2 text-white-100`}>
             I build modern web and mobile apps with React, Next js{" "}
             <br className="sm:block hidden" />
-            React Native and TypeScript
+            React Native, TypeScript and Laravel
           </p>
         </div>
       </div>
