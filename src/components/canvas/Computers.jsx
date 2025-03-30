@@ -1,89 +1,35 @@
 /* eslint-disable react/no-unknown-property */
-import React, { Suspense, useEffect, useState, useRef } from "react";
-import { Canvas, useThree } from "@react-three/fiber";
+import { Suspense, useEffect, useState } from "react";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
-import * as THREE from "three";
 
 import CanvasLoader from "../Loader";
 
+// Check if device is a mobile based on userAgent
+const isMobileDevice = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+};
+
+// Detect browser
+const getBrowser = () => {
+  const userAgent = navigator.userAgent;
+  if (userAgent.indexOf("Firefox") > -1) return "firefox";
+  if (userAgent.indexOf("Chrome") > -1) return "chrome";
+  if (userAgent.indexOf("Safari") > -1) return "safari";
+  return "other";
+};
+
 const Computers = ({ isMobile }) => {
   const computer = useGLTF("/desktop_pc/scene.gltf");
-  const { gl } = useThree();
-  const modelRef = useRef();
-  
-  // Fix NaN values and handle context loss
-  useEffect(() => {
-    // Set up context loss handling
-    const handleContextLost = (event) => {
-      event.preventDefault();
-      console.log("WebGL context lost, attempting to restore...");
-    };
-    
-    const handleContextRestored = () => {
-      console.log("WebGL context restored!");
-    };
-    
-    const canvas = gl.domElement;
-    canvas.addEventListener('webglcontextlost', handleContextLost, false);
-    canvas.addEventListener('webglcontextrestored', handleContextRestored, false);
-    
-    // Fix NaN values in the model
-    if (computer && computer.scene) {
-      computer.scene.traverse((object) => {
-        if (object.isMesh && object.geometry) {
-          const geometry = object.geometry;
-          
-          // Fix NaN positions
-          if (geometry.attributes.position) {
-            const positions = geometry.attributes.position.array;
-            let hasNaN = false;
-            
-            for (let i = 0; i < positions.length; i++) {
-              if (isNaN(positions[i]) || !isFinite(positions[i])) {
-                positions[i] = 0;
-                hasNaN = true;
-              }
-            }
-            
-            if (hasNaN) {
-              geometry.attributes.position.needsUpdate = true;
-              
-              // Safely compute bounding sphere
-              try {
-                geometry.computeBoundingSphere();
-                
-                // If still NaN, create a safe fallback sphere
-                if (isNaN(geometry.boundingSphere.radius)) {
-                  geometry.boundingSphere.radius = 1.0;
-                }
-              } catch (e) {
-                console.error("Error computing bounding sphere:", e);
-                geometry.boundingSphere = {
-                  center: new THREE.Vector3(0, 0, 0),
-                  radius: 1.0
-                };
-              }
-            }
-          }
-        }
-      });
-    }
-    
-    return () => {
-      // Clean up event listeners
-      canvas.removeEventListener('webglcontextlost', handleContextLost);
-      canvas.removeEventListener('webglcontextrestored', handleContextRestored);
-    };
-  }, [computer, gl]);
 
   return (
-    <mesh ref={modelRef}>
-      {/* Lighting setup */}
+    <mesh>
       <ambientLight intensity={0.8} />
       <directionalLight position={[10, 10, 5]} intensity={0.7} />
       <directionalLight position={[-10, 10, -5]} intensity={0.4} />
 
-      {/* The 3D model */}
       <primitive
         object={computer.scene}
         scale={isMobile ? 0.7 : 0.75}
@@ -96,53 +42,67 @@ const Computers = ({ isMobile }) => {
 
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [canShowCanvas, setCanShowCanvas] = useState(true);
 
   useEffect(() => {
-    // Check for mobile device
+    // Check if we're on mobile
+    const mobileDevice = isMobileDevice();
+    const browser = getBrowser();
+    
+    // Set mobile state based on media query
     const mediaQuery = window.matchMedia("(max-width: 500px)");
     setIsMobile(mediaQuery.matches);
+
+    // Determine if we should show canvas based on device/browser
+    // Firefox and Safari can handle more canvases than Chrome on mobile
+    if (mobileDevice && browser === "chrome") {
+      // Prioritize showing the computer model (hide less important canvases elsewhere)
+      // You can adjust this logic based on which part of your site is most important
+      setCanShowCanvas(true);
+      
+      // Set a global variable that other components can check to determine
+      // if they should render their canvas (to stay under the limit)
+      window.canvasCount = window.canvasCount || 0;
+      window.canvasCount++;
+      
+      // If we're one of the first 16 canvases, show
+      // Otherwise don't render to avoid exceeding Chrome's limit
+      if (window.canvasCount > 16) {
+        setCanShowCanvas(false);
+      }
+    }
 
     const handleMediaQueryChange = (event) => {
       setIsMobile(event.matches);
     };
 
     mediaQuery.addEventListener("change", handleMediaQueryChange);
-    
-    // Clear Three.js cache
-    if (typeof THREE !== 'undefined' && THREE.Cache) {
-      THREE.Cache.clear();
-    }
 
     return () => {
       mediaQuery.removeEventListener("change", handleMediaQueryChange);
+      // Decrement canvas count when component unmounts
+      if (window.canvasCount) window.canvasCount--;
     };
   }, []);
+
+  // If we can't show canvas due to browser limitations, show nothing or a placeholder
+  if (!canShowCanvas) {
+    return null; // Or return a placeholder image/div
+  }
 
   return (
     <Canvas
       frameloop="demand"
-      shadows={false} // Disable shadows for better performance
-      dpr={isMobile ? 0.5 : 1} // Lower resolution on mobile
+      shadows
+      dpr={[1, 2]}
       camera={{ position: [20, 3, 5], fov: 25 }}
-      gl={{ 
-        powerPreference: "default",
-        alpha: true,
-        antialias: !isMobile, // Disable antialiasing on mobile
-        precision: isMobile ? "lowp" : "highp", // Lower precision on mobile
-        preserveDrawingBuffer: true
-      }}
-      onCreated={({ gl }) => {
-        // Clear to transparent background
-        gl.setClearColor(new THREE.Color('#000000'), 0);
-      }}
-      style={{ touchAction: 'none' }} // Fix for mobile touch events
+      gl={{ preserveDrawingBuffer: true }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
           enableZoom={false}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
-          enableDamping={!isMobile} // Disable damping on mobile
         />
         <Computers isMobile={isMobile} />
       </Suspense>
@@ -150,9 +110,6 @@ const ComputersCanvas = () => {
     </Canvas>
   );
 };
-
-// Preload the model to improve loading performance
-useGLTF.preload("/desktop_pc/scene.gltf");
 
 export default ComputersCanvas;
 
