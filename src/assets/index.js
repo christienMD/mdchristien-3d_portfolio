@@ -19,8 +19,8 @@ import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
 import laravel from "./tech/laravel.svg";
 import mySQL from "./tech/mySQL.svg";
-import nextJs from "./tech/next-js.svg";
-import prisma from "./tech/prisma.svg";
+import nextJs from "./tech/nextjs-icon.svg";
+import prisma from "./tech/prisma-3.svg";
 import zustand from "./tech/zustand.svg";
 import reactNative from "./tech/reactNative.svg";
 import lmsCourse from "./lms-course.PNG"
