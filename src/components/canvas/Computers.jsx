@@ -2,27 +2,51 @@
 import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import * as THREE from "three";
 
 import CanvasLoader from "../Loader";
 
-// Check if device is a mobile based on userAgent
-const isMobileDevice = () => {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent
-  );
-};
-
-// Detect browser
-const getBrowser = () => {
-  const userAgent = navigator.userAgent;
-  if (userAgent.indexOf("Firefox") > -1) return "firefox";
-  if (userAgent.indexOf("Chrome") > -1) return "chrome";
-  if (userAgent.indexOf("Safari") > -1) return "safari";
-  return "other";
-};
-
+// Modified Computer component with error handling
 const Computers = ({ isMobile }) => {
   const computer = useGLTF("/desktop_pc/scene.gltf");
+  
+  // Add error handling for the model
+  useEffect(() => {
+    if (computer && computer.scene) {
+      // Fix NaN values in model geometries
+      computer.scene.traverse((object) => {
+        if (object.isMesh && object.geometry) {
+          const geometry = object.geometry;
+          
+          // Fix NaN values in positions
+          if (geometry.attributes.position) {
+            const positions = geometry.attributes.position.array;
+            let hasNaN = false;
+            
+            for (let i = 0; i < positions.length; i++) {
+              if (isNaN(positions[i]) || !isFinite(positions[i])) {
+                positions[i] = 0;
+                hasNaN = true;
+              }
+            }
+            
+            if (hasNaN) {
+              geometry.attributes.position.needsUpdate = true;
+              
+              // Create a valid bounding sphere
+              if (!geometry.boundingSphere) {
+                geometry.boundingSphere = new THREE.Sphere(new THREE.Vector3(0, 0, 0), 1);
+              } else {
+                if (isNaN(geometry.boundingSphere.radius)) {
+                  geometry.boundingSphere.radius = 1;
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+  }, [computer]);
 
   return (
     <mesh>
@@ -42,35 +66,34 @@ const Computers = ({ isMobile }) => {
 
 const ComputersCanvas = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [canShowCanvas, setCanShowCanvas] = useState(true);
 
   useEffect(() => {
-    // Check if we're on mobile
-    const mobileDevice = isMobileDevice();
-    const browser = getBrowser();
+    // Patch THREE.BufferGeometry to handle NaN values
+    const originalComputeBoundingSphere = THREE.BufferGeometry.prototype.computeBoundingSphere;
     
-    // Set mobile state based on media query
+    THREE.BufferGeometry.prototype.computeBoundingSphere = function() {
+      try {
+        // Call original method
+        originalComputeBoundingSphere.call(this);
+        
+        // Fix NaN radius after computation
+        if (this.boundingSphere && isNaN(this.boundingSphere.radius)) {
+          this.boundingSphere.radius = 1;
+          console.log("Fixed NaN radius in computeBoundingSphere");
+        }
+      } catch (e) {
+        console.error("Error in computeBoundingSphere:", e);
+        
+        // Create a fallback bounding sphere
+        this.boundingSphere = new THREE.Sphere(new THREE.Vector3(0, 0, 0), 1);
+      }
+      
+      return this;
+    };
+    
+    // Check for mobile device
     const mediaQuery = window.matchMedia("(max-width: 500px)");
     setIsMobile(mediaQuery.matches);
-
-    // Determine if we should show canvas based on device/browser
-    // Firefox and Safari can handle more canvases than Chrome on mobile
-    if (mobileDevice && browser === "chrome") {
-      // Prioritize showing the computer model (hide less important canvases elsewhere)
-      // You can adjust this logic based on which part of your site is most important
-      setCanShowCanvas(true);
-      
-      // Set a global variable that other components can check to determine
-      // if they should render their canvas (to stay under the limit)
-      window.canvasCount = window.canvasCount || 0;
-      window.canvasCount++;
-      
-      // If we're one of the first 16 canvases, show
-      // Otherwise don't render to avoid exceeding Chrome's limit
-      if (window.canvasCount > 16) {
-        setCanShowCanvas(false);
-      }
-    }
 
     const handleMediaQueryChange = (event) => {
       setIsMobile(event.matches);
@@ -80,33 +103,51 @@ const ComputersCanvas = () => {
 
     return () => {
       mediaQuery.removeEventListener("change", handleMediaQueryChange);
-      // Decrement canvas count when component unmounts
-      if (window.canvasCount) window.canvasCount--;
+      
+      // Restore original method
+      THREE.BufferGeometry.prototype.computeBoundingSphere = originalComputeBoundingSphere;
     };
   }, []);
-
-  // If we can't show canvas due to browser limitations, show nothing or a placeholder
-  if (!canShowCanvas) {
-    return null; // Or return a placeholder image/div
-  }
 
   return (
     <Canvas
       frameloop="demand"
-      shadows
-      dpr={[1, 2]}
+      shadows={false} // Disable shadows for better performance
+      dpr={isMobile ? 0.75 : [1, 2]} // Lower resolution on mobile
       camera={{ position: [20, 3, 5], fov: 25 }}
-      gl={{ preserveDrawingBuffer: true }}
+      gl={{ 
+        powerPreference: "default",
+        alpha: true,
+        antialias: !isMobile, // Disable antialiasing on mobile
+        precision: isMobile ? "lowp" : "highp", // Lower precision on mobile
+        preserveDrawingBuffer: true
+      }}
+      onCreated={({ gl }) => {
+        // Set clear color
+        gl.setClearColor(new THREE.Color('#000000'), 0);
+        
+        // Handle WebGL context loss/restore
+        const canvas = gl.domElement;
+        canvas.addEventListener('webglcontextlost', (event) => {
+          event.preventDefault();
+          console.log("WebGL context lost, attempting to restore...");
+        }, false);
+        
+        canvas.addEventListener('webglcontextrestored', () => {
+          console.log("WebGL context restored!");
+        }, false);
+      }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
           enableZoom={false}
           maxPolarAngle={Math.PI / 2}
           minPolarAngle={Math.PI / 2}
+          enableDamping={!isMobile} // Disable damping on mobile
         />
         <Computers isMobile={isMobile} />
       </Suspense>
-      <Preload all />
+      {/* Remove Preload to avoid NaN errors */}
     </Canvas>
   );
 };

@@ -18,17 +18,8 @@ const isMobileDevice = () => {
   );
 };
 
-// Detect browser
-const getBrowser = () => {
-  const userAgent = navigator.userAgent;
-  if (userAgent.indexOf("Firefox") > -1) return "firefox";
-  if (userAgent.indexOf("Chrome") > -1) return "chrome";
-  if (userAgent.indexOf("Safari") > -1) return "safari";
-  return "other";
-};
-
-// Fallback image component for when canvas can't be shown
-const ImageFallback = ({ icon }) => {
+// Static image fallback component to show on mobile
+const ImageBall = ({ icon }) => {
   return (
     <div 
       style={{
@@ -38,23 +29,24 @@ const ImageFallback = ({ icon }) => {
         justifyContent: "center",
         alignItems: "center",
         borderRadius: "50%",
-        background: "#151030",
-        overflow: "hidden",
+        backgroundColor: "#151030",
+        padding: "20%",
       }}
     >
       <img 
         src={icon} 
         alt="technology" 
         style={{
-          width: "60%",
-          height: "60%",
-          objectFit: "contain"
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
         }}
       />
     </div>
   );
 };
 
+// 3D Ball component for desktop
 const Ball = (props) => {
   const [decal] = useTexture([props.imgUrl]);
 
@@ -83,39 +75,37 @@ const Ball = (props) => {
 };
 
 const BallCanvas = ({ icon }) => {
-  const [canShowCanvas, setCanShowCanvas] = useState(true);
-
+  const [isMobile, setIsMobile] = useState(false);
+  
   useEffect(() => {
-    // Check if we're on mobile
+    // Check if we're on a mobile device
     const mobileDevice = isMobileDevice();
-    const browser = getBrowser();
+    setIsMobile(mobileDevice);
     
-    // If on Chrome mobile, check if we're beyond the canvas limit
-    if (mobileDevice && browser === "chrome") {
-      // Initialize or increment canvas count
-      window.canvasCount = window.canvasCount || 0;
-      window.canvasCount++;
-      
-      // Chrome mobile has ~16 canvas limit
-      // For balls, which are less important than main computer model,
-      // we'll use image fallbacks after a lower threshold to save resources
-      if (window.canvasCount > 8) {
-        setCanShowCanvas(false);
-      }
-    }
-
+    // Also check using media query for consistency
+    const mediaQuery = window.matchMedia("(max-width: 500px)");
+    
+    const handleMediaQueryChange = (event) => {
+      setIsMobile(event.matches || mobileDevice);
+    };
+    
+    // Set initial state
+    handleMediaQueryChange(mediaQuery);
+    
+    // Add listener for changes
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
+    
     return () => {
-      // Decrement canvas count when component unmounts
-      if (window.canvasCount) window.canvasCount--;
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
     };
   }, []);
-
-  // If we need to limit canvas usage, show image fallback instead
-  if (!canShowCanvas) {
-    return <ImageFallback icon={icon} />;
+  
+  // For mobile devices, return the static image version
+  if (isMobile) {
+    return <ImageBall icon={icon} />;
   }
-
-  // Original canvas rendering
+  
+  // For desktop, use the 3D version
   return (
     <Canvas
       frameloop="demand"
@@ -133,6 +123,8 @@ const BallCanvas = ({ icon }) => {
 };
 
 export default BallCanvas;
+
+
 
 // /* eslint-disable react/no-unknown-property */
 // import { Suspense } from "react";
