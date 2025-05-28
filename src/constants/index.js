@@ -114,25 +114,46 @@ const technologies = [
 
 const experiences = [
   {
-    title: "Software Developer",
-    company_name: "Tech Chantier",
+    title: "Frontend Developer - Full-time",
+    company_name: "Terrax Africa - Switzerland - Remote",
     icon: "",
     iconBg: "#383E56",
-    date: "March 2024 - Present",
+    date: "May 2024 - Present",
     points: [
-      "Collaborated in developing Nguava, a platform empowering global creators with tools for content creation, distribution, and monetization.",
-      "Improved platform security by 30% by implementing core authentication features using React.js and TypeScript.",
-      "Built responsive interfaces with modern UI components while efficiently consuming Laravel backend APIs.",
-      "Contributed to a multi-tenant Laravel platform for dynamic content management across different tenant websites.",
-      "Co-trained React/React Native bootcamp participants and mentored junior developers to complete real-life projects.",
+      "Built scalable and performant web applications using Next.js, implementing server-side rendering and optimizing frontend performance for enhanced user experience.",
+      "Collaborated with backend developers and designers to solve complex technical challenges and deliver seamless integration solutions."
     ],
   },
   {
-    title: "Frontend Developer",
-    company_name: "Touko Banix",
+    title: "Full-Stack Developer - Contract",
+    company_name: "Njomi Tech Solutions - Douala - Remote",
+    icon: "",
+    iconBg: "#383E56",
+    date: "Feb 2024 - April 2024",
+    points: [
+      "Contributed to Educlynk, a peer-to-peer educational platform connecting role models with youths across Africa and Asia.",
+      "Developed both frontend and backend features to support the platform's mission of educational empowerment and mentorship."
+    ],
+  },
+  {
+    title: "Software Developer - Full-time",
+    company_name: "Tech Chantier - Buea Cameroon - Onsite",
+    icon: "",
+    iconBg: "#383E56",
+    date: "March 2023 - March 2024",
+    points: [
+      "Engineered core authentication features and interactive UI components for Nguava platform using React.js and TypeScript, improving security by 30% while ensuring seamless consumption of Laravel backend APIs.",
+      "Collaborated with UI/UX designers in an agile environment to deliver pixel-perfect implementations of design specifications.",
+      "Contributed to a multi-tenant Laravel platform, building the admin dashboard and implementing dynamic content management features across different tenant websites.",
+      "Mentored junior developers during company-organized React/React Native bootcamps, helping 10+ developers complete real-world projects.",
+    ],
+  },
+  {
+    title: "Frontend Developer - Contract",
+    company_name: "Touko Banix - Buea Cameroon - Remote",
     icon: "",
     iconBg: "#E6DEDD",
-    date: "Feb 2024 - May 2024",
+    date: "Feb 2023 - April 2023",
     points: [
       "Engineered an intuitive admin dashboard for Scout Giant, a football scouting platform, using Next.js and Tailwind CSS with Daisy UI.",
       "Implemented comprehensive user management features for tracking and managing scouts, players, and platform activities.",
@@ -142,21 +163,8 @@ const experiences = [
     ],
   },
   {
-    title: "Frontend Developer Mentor",
-    company_name: "Wicon",
-    icon: "",
-    iconBg: "#383E56",
-    date: "Jan 2024 - April 2024",
-    points: [
-      "Led a comprehensive mentorship program for frontend development interns, providing video tutorials and personalized support.",
-      "Conducted regular online evaluation sessions to assess interns' progress and understanding of frontend concepts.",
-      "Utilized interactive online sessions to foster engagement and facilitate collaborative learning experiences.",
-      "Promoted knowledge sharing, peer-to-peer support, and teamwork through group projects and pair programming sessions.",
-    ],
-  },
-  {
-    title: "Frontend Developer Intern",
-    company_name: "Loop Technologies",
+    title: "Frontend Developer - Intern",
+    company_name: "Loop Technologies - Buea Cameroon - Onsite",
     icon: "",
     iconBg: "#E6DEDD",
     date: "June 2023 - Jan 2024",
