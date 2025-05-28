@@ -44,16 +44,16 @@ const services = [
     icon: web,
   },
   {
+    title: "Full Stack Developer",
+    icon: creator,
+  },
+  {
     title: "Web Developer",
     icon: web,
   },
   {
     title: "React Native Developer",
     icon: mobile,
-  },
-  {
-    title: "Full Stack Developer",
-    icon: creator,
   },
 ];
 
@@ -121,7 +121,7 @@ const experiences = [
     date: "May 2024 - Present",
     points: [
       "Built scalable and performant web applications using Next.js, implementing server-side rendering and optimizing frontend performance for enhanced user experience.",
-      "Collaborated with backend developers and designers to solve complex technical challenges and deliver seamless integration solutions."
+      "Collaborated with backend developers and designers to solve complex technical challenges and deliver seamless integration solutions.",
     ],
   },
   {
@@ -132,7 +132,7 @@ const experiences = [
     date: "Feb 2024 - April 2024",
     points: [
       "Contributed to Educlynk, a peer-to-peer educational platform connecting role models with youths across Africa and Asia.",
-      "Developed both frontend and backend features to support the platform's mission of educational empowerment and mentorship."
+      "Developed both frontend and backend features to support the platform's mission of educational empowerment and mentorship.",
     ],
   },
   {
