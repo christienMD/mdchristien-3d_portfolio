@@ -140,7 +140,7 @@ const experiences = [
     company_name: "Tech Chantier - Buea Cameroon - Onsite",
     icon: "",
     iconBg: "#383E56",
-    date: "March 2023 - March 2024",
+    date: "March 2024 - March 2025",
     points: [
       "Engineered core authentication features and interactive UI components for Nguava platform using React.js and TypeScript, improving security by 30% while ensuring seamless consumption of Laravel backend APIs.",
       "Collaborated with UI/UX designers in an agile environment to deliver pixel-perfect implementations of design specifications.",
