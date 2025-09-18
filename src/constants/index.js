@@ -208,6 +208,35 @@ const testimonials = [
 
 const projects = [
   {
+    name: "Meet AI",
+    description:
+      "Meet AI is a video calling app powered entirely by AI agents. Features real-time calls with custom AI agents, generate summaries and transcripts using background jobs, and integrate a full post-call experience including video playback, transcript search, and an AI chat that understands the meeting context.",
+    tags: [
+      {
+        name: "nextjs",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "typescript",
+        color: "green-text-gradient",
+      },
+      {
+        name: "tailwind + shadcn ui",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "TRPC + tanstack query",
+        color: "orange-text-gradient",
+      },
+      {
+        name: "neon + drizzle ORM",
+        color: "blue-text-gradient",
+      },
+    ],
+    image: jiraclone, // Placeholder image (won't be used due to isComingSoon)
+    isComingSoon: true,
+  },
+  {
     name: "Jira Clone",
     description:
       "A lightweight Jira-inspired task management app with real-time synchronization, responsive layouts, and optimized drag-and-drop functionality. Features modern authentication flows, performance-optimized rendering, and accessibility standards implementation.",
@@ -221,7 +250,7 @@ const projects = [
         color: "green-text-gradient",
       },
       {
-        name: "tailwind",
+        name: "tailwind + shadcn ui",
         color: "pink-text-gradient",
       },
       {
@@ -247,8 +276,12 @@ const projects = [
         color: "green-text-gradient",
       },
       {
-        name: "tailwind",
+        name: "tailwind + chakra ui",
         color: "pink-text-gradient",
+      },
+      {
+        name: "tanstack query + zustand",
+        color: "orange-text-gradient",
       },
     ],
     image: gamehub,
@@ -275,6 +308,10 @@ const projects = [
       {
         name: "cloudinary",
         color: "orange-text-gradient",
+      },
+      {
+        name: "tailwind + shadcn ui",
+        color: "pink-text-gradient",
       },
     ],
     image: obilli,

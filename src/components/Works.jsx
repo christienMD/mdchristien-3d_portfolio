@@ -7,6 +7,7 @@ import { SectionWrapper } from "../hoc";
 import { projects } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 import { Eye } from "lucide-react";
+import ComingSoonTemplate from "./ComingSoonTemplate";
 
 const ProjectCard = ({
   index,
@@ -16,6 +17,7 @@ const ProjectCard = ({
   image,
   source_code_link,
   live_demo_link,
+  isComingSoon,
 }) => {
   return (
     <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
@@ -28,32 +30,40 @@ const ProjectCard = ({
         className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full"
       >
         <div className="relative w-full h-[230px]">
-          <img
-            src={image}
-            alt="project_image"
-            className="w-full h-full object-cover rounded-2xl"
-          />
+          {isComingSoon ? (
+            <ComingSoonTemplate className="w-full h-full" />
+          ) : (
+            <img
+              src={image}
+              alt="project_image"
+              className="w-full h-full object-cover rounded-2xl"
+            />
+          )}
 
-          <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
-            {live_demo_link && (
-              <div
-                onClick={() => window.open(live_demo_link, "_blank")}
-                className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer mr-2"
-              >
-                <Eye className="text-white size-7" />
-              </div>
-            )}
-            <div
-              onClick={() => window.open(source_code_link, "_blank")}
-              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
-            >
-              <img
-                src={github}
-                alt="source code"
-                className="w-1/2 h-1/2 object-contain"
-              />
+          {!isComingSoon && (
+            <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
+              {live_demo_link && (
+                <div
+                  onClick={() => window.open(live_demo_link, "_blank")}
+                  className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer mr-2"
+                >
+                  <Eye className="text-white size-7" />
+                </div>
+              )}
+              {source_code_link && (
+                <div
+                  onClick={() => window.open(source_code_link, "_blank")}
+                  className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
+                >
+                  <img
+                    src={github}
+                    alt="source code"
+                    className="w-1/2 h-1/2 object-contain"
+                  />
+                </div>
+              )}
             </div>
-          </div>
+          )}
         </div>
 
         <div className="mt-5">

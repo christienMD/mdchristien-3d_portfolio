@@ -49,7 +49,7 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
       >
-        I&apos;m a Full Stack Developer with 3 years of hands-on experience in
+        I&apos;m a Full Stack Developer with 3+ years of hands-on experience in
         React.js, Next.js, TypeScript and Laravel. I excel at converting design
         concepts into functional, responsive applications across web and mobile
         platforms. I focus on crafting clean interfaces with modern tools while
