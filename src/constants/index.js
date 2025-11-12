@@ -124,17 +124,17 @@ const experiences = [
       "Collaborated with backend developers and designers to solve complex technical challenges and deliver seamless integration solutions.",
     ],
   },
-  {
-    title: "Full-Stack Developer - Contract",
-    company_name: "Njomi Tech Solutions - Douala - Remote",
-    icon: "",
-    iconBg: "#383E56",
-    date: "Feb 2024 - May 2024",
-    points: [
-      "Contributed to Educlynk, a peer-to-peer educational platform connecting role models with youths across Africa and Asia.",
-      "Developed both frontend and backend features to support the platform's mission of educational empowerment and mentorship.",
-    ],
-  },
+  // {
+  //   title: "Full-Stack Developer - Contract",
+  //   company_name: "Njomi Tech Solutions - Douala - Remote",
+  //   icon: "",
+  //   iconBg: "#383E56",
+  //   date: "Feb 2024 - May 2024",
+  //   points: [
+  //     "Contributed to Educlynk, a peer-to-peer educational platform connecting role models with youths across Africa and Asia.",
+  //     "Developed both frontend and backend features to support the platform's mission of educational empowerment and mentorship.",
+  //   ],
+  // },
   {
     title: "Software Developer - Full-time",
     company_name: "Tech Chantier - Buea Cameroon - Onsite",
