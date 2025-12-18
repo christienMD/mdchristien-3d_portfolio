@@ -1,12 +1,12 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
 
 import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
-import { toast } from "react-toastify";
 
 const Contact = () => {
   const formRef = useRef();
@@ -48,9 +48,7 @@ const Contact = () => {
       .then(
         () => {
           setLoading(false);
-         toast.success(
-           "Thank you for your message! I'll respond to your inquiry within 24-48 hours.",
-         );
+          toast.success("Thank you for your message! I'll respond to your inquiry within 24-48 hours.");
 
           setForm({
             name: "",
