@@ -5,6 +5,14 @@ import { SectionWrapper } from "../hoc";
 import { fadeIn, textVariant } from "../utils/motion";
 import { testimonials } from "../constants";
 
+const getInitials = (name = "") =>
+  name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0].toUpperCase())
+    .join("");
+
 const FeedbackCard = ({
   index,
   testimonial,
@@ -32,11 +40,20 @@ const FeedbackCard = ({
           </p>
         </div>
 
-        <img
-          src={image}
-          alt={`feedback_by-${name}`}
-          className="w-10 h-10 rounded-full object-cover"
-        />
+        {image ? (
+          <img
+            src={image}
+            alt={`feedback_by-${name}`}
+            className="w-10 h-10 rounded-full object-cover"
+          />
+        ) : (
+          <div
+            aria-label={`feedback_by-${name}`}
+            className="w-12 h-12 rounded-full green-pink-gradient flex items-center justify-center text-white text-[16px] font-bold shadow-card ring-2 ring-white/20 shrink-0"
+          >
+            {getInitials(name)}
+          </div>
+        )}
       </div>
     </div>
   </motion.div>

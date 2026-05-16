@@ -5,6 +5,7 @@ import { styles } from "../styles";
 import { services } from "../constants";
 import { fadeIn, textVariant } from "../utils/motion";
 import { SectionWrapper } from "../hoc";
+import mdchristien from "../assets/mdchristien.jpeg";
 
 // C:\Users\md christien\mdchristien-3d_portfolio\src\hoc\SectionWrapper.jsx
 
@@ -45,19 +46,29 @@ const About = () => {
         <h2 className={styles.sectionHeadText}>Overview.</h2>
       </motion.div>
 
-      <motion.p
-        variants={fadeIn("", "", 0.1, 1)}
-        className="mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]"
-      >
-        I&apos;m a Full Stack Developer with 3+ years of hands-on experience in
-        React.js, Next.js, TypeScript and Laravel. I excel at converting design
-        concepts into functional, responsive applications across web and mobile
-        platforms. I focus on crafting clean interfaces with modern tools while
-        ensuring seamless integration with backend systems. Having mentored
-        junior developers and worked in diverse teams, I combine technical
-        skills with strong collaboration. Let&apos;s partner to build engaging
-        digital solutions that address real challenges!
-      </motion.p>
+      <div className="mt-4 flex flex-col-reverse md:flex-row md:items-center md:justify-between gap-8 md:gap-12">
+        <motion.p
+          variants={fadeIn("", "", 0.1, 1)}
+          className="text-secondary text-[17px] max-w-3xl leading-[30px]"
+        >
+          I&apos;m a Full Stack Developer with 4+ years of hands-on experience
+          in React.js, Next.js, TypeScript and Laravel. I excel at converting
+          design concepts into functional, responsive applications across web
+          and mobile platforms. I focus on crafting clean interfaces with
+          modern tools while ensuring seamless integration with backend
+          systems. Having mentored junior developers and worked in diverse
+          teams, I combine technical skills with strong collaboration.
+          Let&apos;s partner to build engaging digital solutions that address
+          real challenges!
+        </motion.p>
+
+        <motion.img
+          variants={fadeIn("left", "spring", 0.2, 1)}
+          src={mdchristien}
+          alt="MD Christien"
+          className="w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-2xl object-cover shadow-card border-2 border-tertiary shrink-0"
+        />
+      </div>
 
       <div className="mt-20 flex flex-wrap gap-10">
         {services.map((service, index) => (

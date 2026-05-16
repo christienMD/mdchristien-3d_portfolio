@@ -118,10 +118,12 @@ const experiences = [
     company_name: "Terrax Africa - Switzerland - Remote",
     icon: "",
     iconBg: "#383E56",
-    date: "May 2024 - Present",
+    date: "May 2025 - Present",
     points: [
-      "Built scalable and performant web applications using Next.js, implementing server-side rendering and optimizing frontend performance for enhanced user experience.",
-      "Collaborated with backend developers and designers to solve complex technical challenges and deliver seamless integration solutions.",
+      "Building scalable, performant web applications with Next.js and TypeScript, focusing on server-side rendering and clean, maintainable architecture.",
+      "Working hands-on with Mapbox, Deck.gl, and MapLibre to build interactive 3D data visualizations and geospatial experiences on the web.",
+      "Deploying and managing cloud infrastructure with AWS Amplify and handling secure user authentication flows using AWS Cognito.",
+      "Picking up new tools quickly on the job and constantly pushing myself to learn modern stacks that keep our product fast, reliable, and future-proof.",
     ],
   },
   // {
@@ -137,10 +139,10 @@ const experiences = [
   // },
   {
     title: "Software Developer - Full-time",
-    company_name: "Tech Chantier - Buea Cameroon - Onsite",
+    company_name: "Tech Chantier - Buea Cameroon - On-site",
     icon: "",
     iconBg: "#383E56",
-    date: "March 2024 - March 2025",
+    date: "Mar 2024 - Mar 2025",
     points: [
       "Engineered core authentication features and interactive UI components for Nguava platform using React.js and TypeScript, improving security by 30% while ensuring seamless consumption of Laravel backend APIs.",
       "Collaborated with UI/UX designers in an agile environment to deliver pixel-perfect implementations of design specifications.",
@@ -150,10 +152,10 @@ const experiences = [
   },
   {
     title: "Frontend Developer - Contract",
-    company_name: "Touko Banix - Buea Cameroon - Remote",
+    company_name: "Touko Banix - Buea Cameroon - Hybrid",
     icon: "",
     iconBg: "#E6DEDD",
-    date: "Feb 2023 - April 2023",
+    date: "Sep 2023 - Feb 2024",
     points: [
       "Engineered an intuitive admin dashboard for Scout Giant, a football scouting platform, using Next.js and Tailwind CSS with Daisy UI.",
       "Implemented comprehensive user management features for tracking and managing scouts, players, and platform activities.",
@@ -164,10 +166,10 @@ const experiences = [
   },
   {
     title: "Frontend Developer - Intern",
-    company_name: "Loop Technologies - Buea Cameroon - Onsite",
+    company_name: "Loop Technologies - Buea Cameroon - On-site",
     icon: "",
     iconBg: "#E6DEDD",
-    date: "June 2023 - Jan 2024",
+    date: "Mar 2023 - Sep 2023",
     points: [
       "Worked on the LEAD Frontend project, a real-life food delivery application, developing according to the Software Requirements Specification.",
       "Built responsive and intuitive user interfaces using React and Next.js for user registration, restaurant search, and order management.",
@@ -193,7 +195,6 @@ const testimonials = [
     name: "Ashu Boris",
     designation: "UI/UX Designer",
     company: "Tech Chantier",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
   },
   {
     testimonial:

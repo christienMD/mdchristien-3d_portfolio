@@ -30,7 +30,7 @@ import shopify from "./company/shopify.png";
 import starbucks from "./company/starbucks.png";
 import tesla from "./company/tesla.png";
 
-import obilli from "./obilli.PNG";
+import obilli from "./bonas.png";
 import gamehub from "./gamehub.PNG";
 import jiraclone from "./jiraclone.PNG";
 import cyril from './cyril.jpeg'
