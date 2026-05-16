@@ -1,10 +1,5 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-const TO_EMAIL = process.env.CONTACT_TO_EMAIL || "mesuehchristian12@gmail.com";
-const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL || "Portfolio <onboarding@resend.dev>";
-
 const escapeHtml = (str) =>
   String(str)
     .replace(/&/g, "&amp;")
@@ -19,6 +14,19 @@ export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
+
+  const { RESEND_API_KEY, CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL } = process.env;
+
+  if (!RESEND_API_KEY || !CONTACT_TO_EMAIL || !CONTACT_FROM_EMAIL) {
+    console.error("Missing required env vars", {
+      hasKey: Boolean(RESEND_API_KEY),
+      hasTo: Boolean(CONTACT_TO_EMAIL),
+      hasFrom: Boolean(CONTACT_FROM_EMAIL),
+    });
+    return res.status(500).json({ error: "Email service is not configured" });
+  }
+
+  const resend = new Resend(RESEND_API_KEY);
 
   const { name, email, message } = req.body || {};
 
@@ -139,8 +147,8 @@ Received via the contact form at https://www.mdchristien.com`;
 
   try {
     const { data, error } = await resend.emails.send({
-      from: FROM_EMAIL,
-      to: TO_EMAIL,
+      from: CONTACT_FROM_EMAIL,
+      to: CONTACT_TO_EMAIL,
       replyTo: email,
       subject: `Portfolio: ${name} just sent you a message`,
       html,
@@ -149,7 +157,9 @@ Received via the contact form at https://www.mdchristien.com`;
 
     if (error) {
       console.error("Resend error:", error);
-      return res.status(502).json({ error: "Email service rejected the request" });
+      return res.status(502).json({
+        error: error.message || "Email service rejected the request",
+      });
     }
 
     return res.status(200).json({ success: true, id: data?.id });
