@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 import { toast } from "sonner";
 
 import { styles } from "../styles";
@@ -28,41 +27,32 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    emailjs
-      .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: "Mesueh Christien",
-          from_email: form.email,
-          to_email: "mesuehchristian12@gmail.com",
-          message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false);
-          toast.success("Thank you for your message! I'll respond to your inquiry within 24-48 hours.");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
 
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
+      if (!response.ok) {
+        const { error } = await response.json().catch(() => ({}));
+        throw new Error(error || "Request failed");
+      }
 
-          toast.error("Ahh, something went wrong. Please try again.");
-        }
+      toast.success(
+        "Thank you for your message! I'll respond to your inquiry within 24-48 hours."
       );
+      setForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error(error);
+      toast.error("Ahh, something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
